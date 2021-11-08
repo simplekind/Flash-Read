@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
+    <title>Flash Read</title> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
@@ -889,6 +889,11 @@
             duration:4.5 
         })  
 
+        gsap.to(".backg",{
+            scrollTrigger:'.display',
+            background:'linear-gradient(300deg, #00d6ff5c -36.37%, rgb(0 0 0) 58.58%)', 
+            duration:4.5 
+        })   
 
     </script>
     <script>
@@ -905,7 +910,7 @@
         var speed = 150 ;
         var prev_speed=speed;
         wpmvalue.innerHTML=parseInt(60/(speed/1000) );
-
+        
         speed_up.addEventListener("click",()=>{
             if(speed<=10){
                 speed=10;
@@ -923,8 +928,28 @@
             console.log(speed)
             wpmvalue.innerHTML=parseInt(60/(speed/1000) );
         })
-        var i = 0; 
+        var i = 0;  
+
+        const getFontSize = (textLength) => {
+                        const baseSize = 4
+                        if (textLength >= 15) {
+                            textLength = 2
+                        }
+
+                        else if (textLength >= 10) {
+                            textLength = 1
+                        } 
+                        
+                        else {
+                            textLength = 0 ;
+                        }
+                        const fontSize = baseSize - textLength 
+                        return `${fontSize}vw`
+                    } 
+
         form.addEventListener('submit',function Event (event){ 
+
+            
 
             event.preventDefault();
             var txt = document.getElementById('pass').value ;
@@ -934,7 +959,14 @@
 
             slider.min=0;
             slider.max=arr.length;
-            let TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+            let TxTid = setInterval(function() { 
+    
+            var string = arr[i++ % arr.length] ; 
+            
+            document.getElementById('displayText').style.fontSize = getFontSize(string.length);
+
+            document.getElementById('displayText').innerText=string; 
+
             wordCount.innerText=(i); 
             slider.value= i; 
             if(i==arr.length){
@@ -960,7 +992,12 @@
             play.addEventListener("click",()=>{  
                 play.style.display="none";
                 pause.style.display="inline"; 
-                let TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+                let TxTid = setInterval(function() {
+                var string = arr[i++ % arr.length] ; 
+                    
+                document.getElementById('displayText').style.fontSize = getFontSize(string.length);
+
+                document.getElementById('displayText').innerText=string; 
                 wordCount.innerText=(i); 
                 slider.value= i; 
                 if(i==arr.length){
@@ -968,7 +1005,7 @@
                     pause.style.display="none";
                     play.style.display="inline";
                 } 
-
+                    
                 speed_up.addEventListener("click",()=>{ 
                     if(play.style.display=="none"){   
                         clearInterval(TxTid);
@@ -979,7 +1016,13 @@
                         console.log(speed)
                         wpmvalue.innerHTML=parseInt(60/(speed/1000) ); 
                         console.log(play.style.display!="none");                     
-                        TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+                        TxTid = setInterval(function() { 
+    
+                        var string = arr[i++ % arr.length] ; 
+                        
+                        document.getElementById('displayText').style.fontSize = getFontSize(string.length);
+
+                        document.getElementById('displayText').innerText=string; 
                         wordCount.innerText=(i); 
                         slider.value= i; 
                         if(i==arr.length){
@@ -1011,7 +1054,13 @@
                         console.log(speed)
                         wpmvalue.innerHTML=parseInt(60/(speed/1000) ); 
 
-                        TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+                        TxTid = setInterval(function() { 
+                            
+                            var string = arr[i++ % arr.length] ; 
+                            
+                            document.getElementById('displayText').style.fontSize = getFontSize(string.length);
+
+                            document.getElementById('displayText').innerText=string; 
                         wordCount.innerText=(i); 
                         slider.value= i; 
                         if(i==arr.length){
@@ -1045,32 +1094,21 @@
             })   
 
             wordCount.innerHTML=slider.value;
-            slider.oninput= function(){ 
+            slider.oninput= function(){  
                 wordCount.innerHTML=this.value;
                 if(slider.value==arr.length){
                     document.getElementById('displayText').innerText=""
                 }
-                else document.getElementById('displayText').innerText=arr[slider.value] 
+                else {
+                     var string = arr[slider.value] ; 
+            
+                    document.getElementById('displayText').style.fontSize = getFontSize(string.length);
+                    document.getElementById('displayText').innerText=string;  
+                } 
                 i= slider.value ; 
             } 
         })          
     </script> 
-    <script>
-        const getFontSize = (textLength) => {
-            const baseSize = 9
-            if (textLength >= baseSize) {
-                textLength = baseSize - 2
-            }
-            const fontSize = baseSize - textLength
-            return `${fontSize}vw`
-        }
-
-        const txt = document.querySelectorAll('.textContainer h1')
-        
-        txt.forEach(x => {
-            x.style.fontSize = getFontSize(x.textContent.length)
-        }) 
-    </script>
     <script>
         $(function(){
             $("a.counter").click(function()

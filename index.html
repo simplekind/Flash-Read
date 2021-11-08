@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> 
+    <style>
+        h1{
+            text-align: center; 
+            color: aliceblue; 
+        } 
+
+        html {
+            scroll-behavior: smooth;
+        } 
+
+        body{
+            background-color: black ;
+            margin: 0 ;
+            padding: 0;
+            border:0;  
+        }  
+
+        .title{
+            display:flex;
+            justify-content:center;
+            align-items:center; 
+            flex-direction:column;
+            z-index:4; 
+        }
+
+        h1 {
+            font-family: 'Ubuntu', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 65px;
+            line-height: 75px;
+            text-align: center;
+            color: #FFFFFF;
+
+        }
+
+        .description{
+            font-family: Open Sans Condensed;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 27px;
+            line-height: 37px;
+            text-align: center;
+            letter-spacing: 0.145em;
+            color: #FFFFFF; 
+            margin:10px;
+            margin-top:20px;
+        }
+
+        input[type="text"] {  
+            display: flex;
+            background-color:transparent;
+            border: 2px solid #ffffff ; 
+            border-radius:5px;
+            font-family: Open Sans Condensed;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 27px;
+            line-height: 37px;
+            text-align: center;
+            letter-spacing: 0.145em;
+            color: #73f3fc;
+            height: 60vh; 
+            width:97vw;
+            padding:5px; 
+            margin-top:60px;
+        }               
+
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: #73f3fc;
+            opacity:0.3;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: #73f3fc;
+        opacity:0.3;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: #73f3fc;
+        opacity:0.3;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #73f3fc;
+        opacity:0.3;
+        }
+        ::-ms-input-placeholder { /* Microsoft Edge */
+        color: #73f3fc;
+        opacity:0.3;
+        }
+
+        ::placeholder { /* Most modern browsers support this now. */
+        color: #73f3fc;
+        opacity:0.3;
+        }
+
+        input[type="text"]:hover{
+            border-color: #b1faff;
+        } 
+
+        input[type="text"]:focus{
+            border-color: #8df7ff; 
+            margin:auto;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+       
+        input[type="range"] {
+            margin: 10px 0;
+            width: 40%;
+            height: 10%; 
+        } 
+
+        input[type="submit"]{
+            display: flex;
+            margin:auto;
+            height: 70px;
+            width: 70px;
+            background: url(img/submit.png) no-repeat center;  
+            background-size:70px 70px;
+            border: 1px solid white; 
+            border-radius: 100px;
+            margin-top:40px;
+            content:unset; 
+            cursor: pointer;
+        }
+        
+        input[type="submit"]:hover{
+            background: url(img/submit_hover.png) no-repeat center;   
+            border: 1px solid #a0dade;
+            background-size:70px 70px;
+        }
+
+        label[for="submit"]{
+            display:flex;
+            margin: auto; 
+            margin-top:20px;
+            justify-content: center;
+            align-items: center;
+            font-family: Open Sans Condensed;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 26px;
+            line-height: 35px;
+            text-align: center;
+            letter-spacing: 0.35em;
+            color: #FFFFFF;           
+        }
+
+        input[type="submit"]:hover+label[for="submit"]{
+            color: #a0dade;           
+        }
+
+        #displayText{
+            font-family: Open Sans;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 80px;
+            line-height: 109px;
+            text-align: center;
+            letter-spacing: 0.19em;
+            color: #FFFFFF;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        .slide{
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        } 
+
+        .slide{
+            -webkit-appearance: none; 
+            width: 100%;  
+            outline: none ;
+            opacity: 0.7; 
+            -webkit-transition: 0.2s; 
+            transition: opacity 0.2s ; 
+            box-sizing: border-box;
+            border-radius: 16px; 
+            flex-direction: column;  
+        } 
+        
+        #slider{
+            width: 523px;
+            height: 8px;
+            border: 1px solid #b5f3f7;
+            box-sizing: border-box;
+            border-radius: 16px;  
+            margin:6px; 
+            -webkit-appearance: none; 
+            background: linear-gradient(90.12deg, rgba(1, 124, 151, 0) 0%, rgba(1, 124, 151, 0) 100%);
+        }
+
+        #slider:hover{
+            opacity: 1 ; 
+            cursor: pointer;
+        } 
+
+        /* thumb is that slider's icon  */
+        #slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width:17px;
+            height:17px;
+            background: #73DEE9; 
+            border-radius: 50%; 
+            cursor: pointer; 
+        } 
+
+        /* But we have to take care of mozilaa firefox  */
+
+        #slider::-moz-range-thumb{
+            width:17px;
+            height:17px;
+            background: #73DEE9; 
+            border-radius: 50%; 
+            cursor: pointer;
+        } 
+
+        .display{
+            display: flex;
+            /* border:3px solid white; */
+            height: 60vh; 
+            width:97vw;
+            align-items: center;
+            justify-content: center;
+            margin:auto;
+            flex-direction:column;
+            position: relative;
+            top:100px;
+            border-bottom: 0.3px solid #c2fcff; 
+            border-right: 0.3px solid #c2fcff; 
+            border-top: 0.3px solid white; 
+            border-left: 0.3px solid white; 
+            border-radius: 7px;
+            box-sizing: border-box;
+        } 
+
+        .textContainer{
+            height:470px; 
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+        }
+        
+        p, .wpmclass , #wpmvalue {
+            color:rgb(255, 255, 255) ;
+        } 
+
+        .wpmclass,#wpmvalue{
+            opacity:0.7;
+            padding:10px;
+            padding-top: 0;
+        } 
+
+        #wpmvalue{
+            padding:0px ;
+            margin:0px;
+        }
+
+        .playback, .speed-playback{
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            flex-direction: column;
+            position:relative;
+            margin:auto;
+            top:130px; 
+            overflow:hidden; 
+            height:130px;
+        }  
+
+        .speed_playback{
+            flex-direction: row;
+        }
+
+        .slideContainer{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-direction: row; 
+            margin:auto;
+            justify-content: space-evenly;
+        }
+        
+        #speed_up , #speed_down , #skip_back,#skip_forward{
+            padding: 5px;
+            height:25px;
+            width: 22px; 
+            padding-top: 0; 
+            cursor: pointer;
+        }
+        
+        #pause, #play {
+            padding: 8px;
+            height:30px;
+            width: 30px; 
+            cursor:pointer;
+            padding-bottom: 20px;
+        }  
+
+        #speed_up , #speed_down {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        #play{
+            display:none; 
+        }
+
+        @media screen and (max-width: 700px){
+            #slider{ 
+                height: 6px;
+                width: 300px;
+            }
+        } 
+
+        @media screen and (max-width: 620px){
+            #slider{
+                height: 4px;
+                width: 140px;
+            }
+
+            #displayText{
+                font-size:50px;
+            }
+        }
+
+        @media screen and (max-width: 300px){
+            #slider{ 
+                width: 90px;
+            } 
+            #skip_back, #skip_forward{
+                display:none;
+            }  
+
+            .slideContainer{
+                overflow: hidden;
+            }
+        } 
+
+        .backg{ 
+            position:fixed;
+            width: 100vw;
+            height: 100vh;
+            background:  linear-gradient(121deg, rgb(0 214 255 / 90%) -36.37%, rgb(0, 0, 0) 58.58%);;
+        } 
+        
+        .container{
+            display: flex; 
+            align-content: center; 
+            flex-direction: column;
+        } 
+        
+        .form{
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            position: relative;
+            z-index:2;
+        }
+        
+        #wpmvalue,#word_num,.wpmclass{
+            font-family: Open Sans Condensed;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 17px;
+            line-height: 23px;
+            text-align: center;
+            letter-spacing: 0.125em;
+            color: #FFFFFF;
+        }
+        
+        .scroll{
+            display: flex;
+            position:relative;
+            top:200px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h2{
+            font-family: Open Sans Condensed;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 1.2rem;
+            line-height: 35px;
+            text-align: center;
+            letter-spacing: 0.35em;
+            color: #FFFFFF; 
+            margin:5px; 
+            margin-top:30px;
+            margin-bottom:0;
+        }  
+
+        .scroll_down {
+            display: flex;
+            margin:auto;
+            height: 70px;
+            width: 70px;
+            background: url(img/ScrollDown.png) no-repeat center;  
+            background-size:70px 70px;
+            border: 1px solid white; 
+            border-radius: 100px;
+            margin-top:40px;
+            content:unset; 
+            cursor: pointer;
+        }
+
+        .scroll_down:hover {
+            background: url(img/ScrollDown_hover.png) no-repeat center;   
+            border: 1px solid #a0dade;
+            background-size:70px 70px;
+        } 
+
+        .scroll_down:hover + h2 {
+            color:#a0dade; 
+        } 
+        
+        .scroll_down:hover + h2 +h2 {
+            color:#a0dade;
+        }
+        
+        h2:hover{
+            color:#a0dade; 
+        }
+
+        h2:hover+h2{
+            color:#a0dade; 
+        }
+
+        a{
+            text-decoration: none
+        } 
+
+        #about{ 
+            display: grid;
+            /* grid-template-columns: repeat(3,500px); */
+            grid-template-columns: repeat(auto-fit, minmax(500px,1fr));
+            grid-column-gap: 125px;
+            grid-row-gap: 50px;
+            align-items: center; 
+            justify-items: center;
+            position:relative;
+            top:450px;
+            margin:auto; 
+            padding:0px; 
+            justify-content: center;
+            align-content: center;
+        } 
+
+        .glass{ 
+            width: 505px;
+            height: 301px;
+            background: linear-gradient(152.97deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+            backdrop-filter: blur(25px);
+            border-radius: 16px;
+            margin: 20px;             
+            display: grid;
+            transition: all;
+            transition-duration: 500ms; 
+            padding-left: 10px;
+            padding-top: 6px;
+        }  
+
+        .glass > * {
+            grid-column-start: 1;
+            grid-row-start: 1; 
+        }
+
+        .glass:hover {
+            transform: scale(1.1);
+        }
+
+        .ellipse{
+            border: 3px solid ;
+            border-color:#00DFFF ;
+            border-radius:100%;
+            filter: blur(8px);  
+            width: 676px;
+            height: 676px; 
+            position: relative;
+            left:-500px;
+            top:-100px;
+        } 
+
+        .normalreadimg{
+            background:url('img/NormalReadimg.png') no-repeat center center/cover  ;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 490px;
+            height: 290px;
+            opacity: 1;
+            overflow: hidden; 
+            z-index: 5; 
+            position: relative; 
+            border-radius: 16px; 
+            transition: all;
+            transition-duration: 500ms;
+        } 
+
+        .normalreadgif{ 
+            background:url('img/NormalRead.gif') no-repeat center center/cover  ;
+            z-index: 6;
+            width: 490px;
+            height: 280px; 
+            transition: all;
+            transition-duration: 500ms; 
+            opacity: 0;  
+            border-radius: 16px; 
+        } 
+        
+        .normalreadimg:hover,.normalreadgif:active{
+            opacity:0;
+        }
+
+        .glass:hover .normalreadimg ,.glass:active .normalreadimg  {
+            opacity:0;
+        } 
+ 
+        .glass:hover .normalreadgif,.glass:active .normalreadgif{
+            opacity:1;
+            transform: scale(1.03); 
+        }  
+
+        .flashreadimg{
+            background:url('img/FlashReadimg.png') no-repeat center center/cover  ;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 490px;
+            height: 290px;
+            opacity: 1;
+            overflow: hidden; 
+            z-index: 5; 
+            position: relative; 
+            border-radius: 16px; 
+            transition: all;
+            transition-duration: 500ms;
+        } 
+
+        .flashreadgif{ 
+            background:url('img/FlashRead.gif') no-repeat center center/cover  ;
+            z-index: 6;
+            width: 490px;
+            height: 280px; 
+            transition: all;
+            transition-duration: 500ms; 
+            opacity: 0;  
+            border-radius: 16px; 
+        } 
+        
+        .flashreadimg:hover,.flashreadimg:active{
+            opacity:0;
+        }
+
+        .glass:hover .flashreadimg,.glass:active .flashreadimg{
+            opacity:0;
+        } 
+ 
+        .glass:hover .flashreadgif, .glass:active .flashreadgif{
+            opacity:1;
+            transform: scale(1.03); 
+        }   
+      
+        #read{
+            font-family: Ubuntu;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 35px;
+            text-align: center;
+            letter-spacing: 0.35em;
+            color: #00e5ff;  
+            text-align: center;
+            position: relative;
+            top:290px; 
+            font-style: normal;
+            font-weight: 300;
+            line-height: 57px;
+            letter-spacing: 0.35em; 
+            position: relative;
+            top:250px;
+            opacity:0.5;
+        } 
+
+        .text h3 {
+            font-family: Open Sans Condensed;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 20px;
+            line-height: 35px;
+            text-align: center;
+            letter-spacing: 0.35em;
+            color: #73DEE9;  
+            text-align: center;
+            position: relative;
+            top:290px; 
+            font-style: normal;
+            font-weight: 300;
+            line-height: 57px;
+            letter-spacing: 0.35em; 
+            z-index:10;
+        } 
+
+        .text h2 {
+            position: relative;
+            top:400px; 
+            font-size:30px ;
+        } 
+
+        .text .why{
+            position: relative;
+            font-size:60px ; 
+            text-align:left;
+            top:-1px;
+            font-family: ubuntu;
+            line-height: 55px;
+            letter-spacing: 0.23em;
+            color: #36A5AF; 
+            margin:20px; 
+            margin-bottom: 100px;;
+        } 
+
+        .desc{ 
+            position: relative;
+            font-size:20px ; 
+            text-align:left;
+            font-family: ubuntu;
+            line-height: 55px;
+            letter-spacing: 0.23em;
+            color: white; 
+            margin:20px;
+            margin-top:50px;
+        } 
+
+        .end{
+            font-family: Ubuntu;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 61px;
+            line-height: 55px;
+            letter-spacing: 0.095em;
+            color: #36A5AF; 
+            text-align: left;
+        } 
+
+        #align{
+            position: relative;
+            top:10px;
+        } 
+
+        #ellipse2{
+            filter:blur(3.5px);
+            border-right: 0;
+        } 
+
+        .contact{
+            display: grid;
+            /* grid-template-columns: repeat(3,500px); */
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            grid-column-gap: 125px;
+            grid-row-gap: 50px;
+            align-items: center; 
+            justify-items: center;
+            position:relative;
+            top:-200px;
+            margin:auto; 
+            padding:0px; 
+            justify-content: center;
+            align-content: center;
+        }  
+
+        #linkedin ,#insta ,#git{
+            height:50px;
+            width:50px;
+            position:relative;
+            margin-right:30px;
+            opacity:0.4;
+        } 
+
+        img + p {
+            font-family: Open Sans Condensed;
+            font-style: normal;
+            font-weight: 300;
+            font-size: 17px;
+            text-align: center;
+            letter-spacing: 0.35em;
+            color: #FFFFFF; 
+        }
+
+        .logo{ 
+            display: flex;
+            flex-direction:row ;
+            border-radius: 16px;
+            margin: 20px;             
+            transition: all;
+            transition-duration: 500ms; 
+            padding-left: 10px;
+            padding-top: 6px;
+
+        }  
+
+        .logo:hover,.logo:active {
+            transform: scale(1.1);
+        } 
+
+        #lgo{
+            display: flex;
+            flex-direction:row ;
+            border-radius: 16px;
+            margin: 20px;             
+            transition: all;
+            transition-duration: 500ms; 
+            padding-left: 10px;
+            padding-top: 6px;
+        }
+
+    </style> 
+</head>
+<body> 
+    <div class="container"> 
+        <div class="title">
+            <h1 id="heading">PROJECT FLASHREAD</h1>
+            <p class="description">AN AVERAGE HUMAN CAN READ 250 WPM. </p>
+            <p class="description">THIS WEBSITE WILL MAKE YOU ABOVE AVERAGE .</p>
+        </div>
+        <div class="form">
+            <form id="form">
+                <input type="text" name="pass" id="pass" placeholder="ENTER YOUR TEXT HERE" required> 
+                <!-- <a href="#display" onclick="document.getElementById('form').submit();"> -->
+                <!-- </a> -->
+                <input type="submit" value="">
+                <label for="submit" id="submit_text">Click To Simulate</label>
+            </form>
+        </div>
+        <div class="backg"></div>
+        <div class="display" id='display'> 
+            <div class="textContainer">
+                <h1 id ="displayText"></h1> 
+            </div>
+            <div class="slide">
+                <div class="slideContainer">
+                    <input type="range" min="0" max="100" value="1" id="slider">
+                </div>
+                <p id="word_num">
+                    Word Number: <span id="value"></span>
+                </p> 
+            </div>  
+        </div>
+        <div class="playback">
+            <img src="img/Pause.png" alt="Speed Up" id="pause"> 
+            <img src="img/Play.png" alt="Speed Up" id="play">
+            <span id="wpmvalue"></span>
+            <div class="speed_playback">
+                <img src="img/SpeedDown.png" alt="Speed Down" id="speed_down"> 
+                <span class="wpmclass">WPM</span>
+                <img src="img/SpeedUp.png" alt="Speed Up" id="speed_up">
+            </div>
+        </div> 
+    </div> 
+    <div class="scroll"> 
+        <a href="#about" onclick="document.getElementById('about').submit();">
+            <div class="scroll_down"></div>
+            <h2>Scroll Down to know </h2>
+            <h2>About This Project </h2>
+        </a>
+    </div> 
+    <div class="text">
+        <h2>
+            Research : Comparision between a normal read and a flash read
+        </h2>
+    </div> 
+    <div id="about">  
+        <div class="glass">
+            <div class="normalreadgif"></div>
+            <div class="normalreadimg"></div>    
+            <div class="text">
+                <h3>
+                    Normal Read 
+                </h3> 
+                <p id="read">
+                    ( Hover / Click to preview )
+                </p>
+            </div>
+        </div>
+        <div class="glass">
+            <div class="flashreadimg"></div>    
+            <div class="flashreadgif"></div>
+            <div class="text">
+                <h3>
+                    Flash Read
+                </h3> 
+                <p id="read">
+                    ( Hover / Click to preview )
+                </p>
+            </div>
+        </div>
+    </div> 
+    <div class="ellipse" ></div> 
+    <div class="text">
+        <h2 class ="why">
+            Why this works?
+        </h2> 
+        <p class="desc">
+            During a read of a paragraph, along with the reading of words, our mind tends to read spaces between them as well so costing us 250 words per minute, but by eliminating the spaces between them your mind only just by focusing on words, you can speed read up to 500 words per minute. But why this method is not used for long text reads?     
+        </p>
+        <p class="desc">
+            Spaces between words are just for sake of pause in your reading and let the reader take a moment in your life to understand the deep meaning of the text and connect the dots. Slow reading isn’t bad as long as you can take out the meaning of the text :)    
+        </p> 
+        <div class="scroll"> 
+            <a href="#end" onclick="document.getElementById('end').submit();">
+                <div class="scroll_down"></div>
+                <h2 id="align">Scroll Down to  </h2>
+                <h2 id="align">Get in touch with me</h2>
+            </a>
+        </div> 
+        <h2 class ="end" id="end">
+            This being my first project built up from scratch means a lot to me, so I wanted to make it as good as I can, and more updates and fixes will be updated soon.
+        </h2>
+        <h2 class="end">
+            Feel free to contribute!
+        </h2>
+        <h2 class="end">
+            Wanna know about me? 
+            Here we can catch up : 
+        </h2>
+    </div>
+    <div class="ellipse" id="ellipse2"></div> 
+    <div class="contact">
+        <div class="logo">
+            <a href="https://www.linkedin.com/in/harshit-goyal-a603a0220/" target="_blank" id="lgo">
+                <img src="img/linkedin.png" alt="Linked In" id="linkedin">  
+                <p>LinkedIn</p>
+            </a>
+        </div>
+        <div class="logo">
+            <a href="https://www.instagram.com/harshit_goyal_94/" target="_blank" id="lgo">
+                <img src="img/insta.png" alt="Instagram" id="insta">  
+                <p>Instagram</p>
+            </a>
+        </div>
+        <div class="logo">
+            <a href="https://github.com/simplekind" target="_blank" id="lgo">
+                <img src="img/git.png" alt="GitHub" id="git">  
+                <p>GitHub</p>
+            </a>
+        </div>
+    </div>
+</body> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollToPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+    <script>
+        gsap.to(".backg",{
+            scrollTrigger:'.title',
+            background:'linear-gradient(121deg, rgb(0 214 255 / 90%) -36.37%, rgb(0, 0, 0) 58.58%)', 
+            duration:1.5,
+        }) 
+
+        gsap.to(".backg",{
+            scrollTrigger:'.display',
+            background:'linear-gradient(300deg, #00d6ff5c -36.37%, rgb(0 0 0) 58.58%)', 
+            duration:4.5 
+        })  
+
+
+    </script>
+    <script>
+        var slider = document.getElementById('slider') ;
+        var wordCount=document.getElementById('value') ; 
+        var pause = document.getElementById('pause') ;
+        var speed_up = document.getElementById('speed_up') ;
+        var speed_down = document.getElementById('speed_down') ;
+        var play = document.getElementById('play') ;
+        var skip_forward = document.getElementById('skip_forward') ;
+        var skip_back = document.getElementById('skip_back') ;
+        var wpmvalue = document.getElementById('wpmvalue');
+        // var playback = document.getElementsByClassName('playback');
+        var speed = 150 ;
+        var prev_speed=speed;
+        wpmvalue.innerHTML=parseInt(60/(speed/1000) );
+
+        speed_up.addEventListener("click",()=>{
+            if(speed<=10){
+                speed=10;
+            }
+            else speed-=20; 
+            console.log(speed)
+            wpmvalue.innerHTML=parseInt(60/(speed/1000) );
+        }) 
+        
+        speed_down.addEventListener("click",()=>{
+            if(speed>=1370){
+                speed=1370;
+            }
+            else speed+=20;
+            console.log(speed)
+            wpmvalue.innerHTML=parseInt(60/(speed/1000) );
+        })
+        var i = 0; 
+        form.addEventListener('submit',function Event (event){ 
+
+            event.preventDefault();
+            var txt = document.getElementById('pass').value ;
+            var arr =  txt.split(" "); 
+
+            //in every +- 0.02 sec we have either speed up / speed down
+
+            slider.min=0;
+            slider.max=arr.length;
+            let TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+            wordCount.innerText=(i); 
+            slider.value= i; 
+            if(i==arr.length){
+                clearInterval(TxTid) 
+                pause.style.display="none";
+                play.style.display="inline";
+            }  
+
+            if(i > arr.length){ 
+                i=0;
+            }
+            
+            pause.addEventListener("click",()=>{
+                clearInterval(TxTid);
+                pause.style.display="none";
+                play.style.display="inline";
+            })      
+
+            
+
+            }, speed) ; 
+
+            play.addEventListener("click",()=>{  
+                play.style.display="none";
+                pause.style.display="inline"; 
+                let TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+                wordCount.innerText=(i); 
+                slider.value= i; 
+                if(i==arr.length){
+                    clearInterval(TxTid) 
+                    pause.style.display="none";
+                    play.style.display="inline";
+                } 
+
+                speed_up.addEventListener("click",()=>{ 
+                    if(play.style.display=="none"){   
+                        clearInterval(TxTid);
+                        if(speed<=10){
+                            speed=10;
+                        }
+                        else speed-=20;
+                        console.log(speed)
+                        wpmvalue.innerHTML=parseInt(60/(speed/1000) ); 
+                        console.log(play.style.display!="none");                     
+                        TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+                        wordCount.innerText=(i); 
+                        slider.value= i; 
+                        if(i==arr.length){
+                            clearInterval(TxTid) 
+                            pause.style.display="none";
+                            play.style.display="inline";
+                        }  
+
+                        if(i > arr.length){ 
+                            i=0;
+                        }
+
+                        pause.addEventListener("click",()=>{
+                            clearInterval(TxTid);
+                            pause.style.display="none";
+                            play.style.display="inline";
+                        })      
+                        }, speed) ; 
+                    }
+                }) 
+
+                speed_down.addEventListener("click",()=>{ 
+                    if(play.style.display=="none"){  
+                        clearInterval(TxTid);
+                        if(speed>=1370){
+                            speed=1370;
+                        }
+                        else speed+=20;
+                        console.log(speed)
+                        wpmvalue.innerHTML=parseInt(60/(speed/1000) ); 
+
+                        TxTid = setInterval(function() { document.getElementById('displayText').innerText=(arr[i++ % arr.length]); 
+                        wordCount.innerText=(i); 
+                        slider.value= i; 
+                        if(i==arr.length){
+                            clearInterval(TxTid) 
+                            pause.style.display="none";
+                            play.style.display="inline";
+                        }  
+
+                        if(i > arr.length){ 
+                            i=0;
+                        }
+
+                        pause.addEventListener("click",()=>{
+                            clearInterval(TxTid);
+                            pause.style.display="none";
+                            play.style.display="inline";
+                        })      
+                        }, speed) ;
+                    }
+                })
+                
+                if(i > arr.length){
+                    i=0;
+                }
+                pause.addEventListener("click",()=>{
+                    clearInterval(TxTid);
+                    pause.style.display="none";
+                    play.style.display="inline";
+                })      
+                }, speed) ; 
+            })   
+
+            wordCount.innerHTML=slider.value;
+            slider.oninput= function(){ 
+                wordCount.innerHTML=this.value;
+                if(slider.value==arr.length){
+                    document.getElementById('displayText').innerText=""
+                }
+                else document.getElementById('displayText').innerText=arr[slider.value] 
+                i= slider.value ; 
+            } 
+        })          
+    </script> 
+    <script>
+        const getFontSize = (textLength) => {
+            const baseSize = 9
+            if (textLength >= baseSize) {
+                textLength = baseSize - 2
+            }
+            const fontSize = baseSize - textLength
+            return `${fontSize}vw`
+        }
+
+        const txt = document.querySelectorAll('.textContainer h1')
+        
+        txt.forEach(x => {
+            x.style.fontSize = getFontSize(x.textContent.length)
+        }) 
+    </script>
+    <script>
+        $(function(){
+            $("a.counter").click(function()
+            {
+                 $.get("set_interesantes.php?n=Frank Melo&u=f6e79cfe9c0ecc4c08dac4c860c4802b&back=http://localhost:8085/Something/success/profile.php?search_user=f6e79cfe9c0ecc4c08dac4c860c4802b&p=12&sa=f6e79cfe9c0ecc4c08dac4c860c4802b&i=2345123&dl=&iv=1" );
+                 return false; 
+            });
+        });
+    </script>
+</html> 
+

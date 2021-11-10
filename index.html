@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet"> 
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="img/site.webmanifest">
     <style>
         h1{
             text-align: center; 
@@ -301,7 +305,8 @@
             align-items:center;
             flex-direction: row; 
             margin:auto;
-            justify-content: space-evenly;
+            justify-content: center; 
+
         }
         
         #speed_up , #speed_down , #skip_back,#skip_forward{
@@ -344,33 +349,49 @@
 
             #displayText{
                 font-size:50px;
-            }
-        }
-
-        @media screen and (max-width: 300px){
-            #slider{ 
-                width: 90px;
             } 
-            #skip_back, #skip_forward{
-                display:none;
-            }  
 
-            .slideContainer{
-                overflow: hidden;
+            input[type="text"]{
+                width:97vw;
+                margin-left: 10px;
             }
         } 
 
+        @media screen and (max-width: 365px){ 
+            #slider{
+                height: 4px;
+                width: 140px;
+            }
+
+            #displayText{
+                font-size:50px;
+            } 
+
+            input[type="text"]{
+                width:120vw;
+            }
+        } 
+
+        @media screen and (max-width: 260px){ 
+            input[type="text"]{
+                width:160vw;
+            }
+        }  
+
         .backg{ 
             position:fixed;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             background:  linear-gradient(121deg, rgb(0 214 255 / 90%) -36.37%, rgb(0, 0, 0) 58.58%);;
+            z-index:0;
         } 
         
         .container{
             display: flex; 
             align-content: center; 
-            flex-direction: column;
+            flex-direction: column; 
+            margin-left:auto; 
+            width:100%;
         } 
         
         .form{
@@ -396,9 +417,8 @@
             display: flex;
             position:relative;
             top:200px;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            flex-direction: column; 
+            margin:auto;
         }
 
         h2{
@@ -458,7 +478,8 @@
         #about{ 
             display: grid;
             /* grid-template-columns: repeat(3,500px); */
-            grid-template-columns: repeat(auto-fit, minmax(500px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(500px,1fr)); 
+            grid-template-rows: auto;
             grid-column-gap: 125px;
             grid-row-gap: 50px;
             align-items: center; 
@@ -739,11 +760,17 @@
             transition-duration: 500ms; 
             padding-left: 10px;
             padding-top: 6px;
-        }
+        }  
 
+        @media screen and (max-width: 478px){
+            .title, .form,.display,.playback,.scroll,.text,#about,.text,.contact{
+                width:460px;
+            } 
+        } 
     </style> 
 </head>
 <body> 
+    <div class="backg"></div>
     <div class="container"> 
         <div class="title">
             <h1 id="heading">PROJECT FLASHREAD</h1>
@@ -759,7 +786,6 @@
                 <label for="submit" id="submit_text">Click To Simulate</label>
             </form>
         </div>
-        <div class="backg"></div>
         <div class="display" id='display'> 
             <div class="textContainer">
                 <h1 id ="displayText"></h1> 
@@ -905,7 +931,8 @@
         var play = document.getElementById('play') ;
         var skip_forward = document.getElementById('skip_forward') ;
         var skip_back = document.getElementById('skip_back') ;
-        var wpmvalue = document.getElementById('wpmvalue');
+        var wpmvalue = document.getElementById('wpmvalue'); 
+        var width = screen.width;
         // var playback = document.getElementsByClassName('playback');
         var speed = 150 ;
         var prev_speed=speed;
@@ -932,6 +959,7 @@
 
         const getFontSize = (textLength) => {
                         const baseSize = 4
+                        const length = textLength ;
                         if (textLength >= 15) {
                             textLength = 2
                         }
@@ -942,8 +970,40 @@
                         
                         else {
                             textLength = 0 ;
+                        } 
+                        fontSize = baseSize - textLength;
+                        if(width<=200) { 
+                            fontSize = baseSize - textLength +9;
+                        } 
+                        else if (width<=300){
+                            fontSize = baseSize - textLength +6; 
+                            if (length >= 20) {
+                                fontSize-=3.5;
+                            }
+                            else if (length >= 15) {
+                                fontSize-=2;
+                            }
+                            
+                            else if (length >= 10) {
+                                fontSize-=1;
+                            } 
                         }
-                        const fontSize = baseSize - textLength 
+                        else if (width<=500){
+                            fontSize = baseSize - textLength +4; 
+                            if (length >= 20) {
+                                fontSize-=2.7;
+                            }
+                            else if (length >= 15) {
+                                fontSize-=2;
+                            }
+                            
+                            else if (length >= 10) {
+                                fontSize-=1;
+                            } 
+                        }
+                        else{
+                            fontSize = baseSize - textLength ; 
+                        }
                         return `${fontSize}vw`
                     } 
 
